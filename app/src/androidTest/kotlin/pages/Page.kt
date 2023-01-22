@@ -49,7 +49,7 @@ open class Page (
     /**
      * Скролл к блоку содержащему [text]
      */
-    protected fun scrollToByText(text: String) {
+    private fun scrollToByText(text: String) {
         val appViews = UiScrollable(UiSelector().scrollable(true))
         appViews.scrollIntoView(UiSelector().text(text))
     }
@@ -57,7 +57,7 @@ open class Page (
     /**
      * Скролл к блоку с [id]
      */
-    protected fun scrollToById(id: String) {
+    private fun scrollToById(id: String) {
         val appViews = UiScrollable(UiSelector().scrollable(true))
         appViews.scrollIntoView(UiSelector().resourceId(id))
     }

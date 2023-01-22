@@ -1,15 +1,16 @@
 package tests
 
 import pages.*
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.uiautomator.UiObject2
+import io.qameta.allure.android.runners.AllureAndroidJUnit4
+import io.qameta.allure.kotlin.junit4.DisplayName
 import org.junit.Assert
 import org.junit.runner.RunWith
 import org.junit.Before
 import org.junit.Test
 
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(AllureAndroidJUnit4::class)
 class TestClaimsPage() : TestBase() {
 
     /**
@@ -20,11 +21,8 @@ class TestClaimsPage() : TestBase() {
         loadPackage()
     }
 
-
-    /**
-     * 39
-     */
     @Test
+    @DisplayName("Тестирование открытия фильтра заявок")
     fun testOpenClaimsFilter() {
         MainPage(device)
             .clickAllClaims()
@@ -32,10 +30,8 @@ class TestClaimsPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 40, 41
-     */
     @Test
+    @DisplayName("Тестирование переключения чекбокса Open")
     fun testToggleFilterOpenCheckbox() {
         val filter = MainPage(device)
             .clickAllClaims()
@@ -46,10 +42,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals(true, filter.isOpenChecked())
     }
 
-    /**
-     * 42, 43
-     */
     @Test
+    @DisplayName("Тестирование переключения чекбокса InProgress")
     fun testToggleFilterInProgressCheckbox() {
         val filter = MainPage(device)
             .clickAllClaims()
@@ -60,10 +54,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals(true, filter.isInProgressChecked())
     }
 
-    /**
-     * 44, 45
-     */
     @Test
+    @DisplayName("Тестирование переключения чекбокса Executed")
     fun testToggleFilterExecutedCheckbox() {
         val filter = MainPage(device)
             .clickAllClaims()
@@ -74,10 +66,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals(false, filter.isExecutedChecked())
     }
 
-    /**
-     * 46, 47
-     */
     @Test
+    @DisplayName("Тестирование переключения чекбокса Cancelled")
     fun testToggleFilterCanceledCheckbox() {
         val filter = MainPage(device)
             .clickAllClaims()
@@ -88,10 +78,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals(false, filter.isCancelledChecked())
     }
 
-    /**
-     * 48
-     */
     @Test
+    @DisplayName("Тестирование фильтрации Open")
     fun testFilterOpen() {
         val statusText = MainPage(device)
             .clickAllClaims()
@@ -103,10 +91,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals("Open", statusText)
     }
 
-    /**
-     * 49
-     */
     @Test
+    @DisplayName("Тестирование фильтрации InProgress")
     fun testFilterInProgress() {
         val statusText = MainPage(device)
             .clickAllClaims()
@@ -118,10 +104,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals("In progress", statusText)
     }
 
-    /**
-     * 50
-     */
     @Test
+    @DisplayName("Тестирование фильтрации Executed")
     fun testFilterExecuted() {
         val statusText = MainPage(device)
             .clickAllClaims()
@@ -135,10 +119,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals("Executed", statusText)
     }
 
-    /**
-     * 51
-     */
     @Test
+    @DisplayName("Тестирование фильтрации Cancelled")
     fun testFilterCanceled() {
         val statusText = MainPage(device)
             .clickAllClaims()
@@ -152,10 +134,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals("Canceled", statusText)
     }
 
-    /**
-     * 52
-     */
     @Test
+    @DisplayName("Тестирование закрытия фильтра")
     fun testCloseFilter() {
         MainPage(device)
             .clickAllClaims()
@@ -164,10 +144,8 @@ class TestClaimsPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 53
-     */
     @Test
+    @DisplayName("Тестирование открытия страницы добавления заявки")
     fun testOpenAddClaimPage() {
         MainPage(device)
             .clickAllClaims()
@@ -175,10 +153,8 @@ class TestClaimsPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 54
-     */
     @Test
+    @DisplayName("Тестирование добавления заявки")
     fun testAddClaim() {
         val claimName =  "New claim 123"
         val claimsPage = MainPage(device)
@@ -195,10 +171,8 @@ class TestClaimsPage() : TestBase() {
         Assert.assertEquals(true, claimsItem is UiObject2)
     }
 
-    /**
-     * 55
-     */
     @Test
+    @DisplayName("Тестирование отмена добавления заявки")
     fun testCancelAddClaim() {
         val claimsPage = MainPage(device)
             .clickAllClaims()
@@ -209,10 +183,8 @@ class TestClaimsPage() : TestBase() {
         claimsPage.onPage()
     }
 
-    /**
-     * 56
-     */
     @Test
+    @DisplayName("Тестирование добавления заявки с главной страницы")
     fun testAddClaimFromMain() {
         val claimName =  "New claim 123"
         val mainPage = MainPage(device)
@@ -231,10 +203,8 @@ class TestClaimsPage() : TestBase() {
     }
 
 
-    /**
-     * 57
-     */
     @Test
+    @DisplayName("Тестирование отмены добавления заявки с главной страницы")
     fun testCancelAddClaimFromMain() {
         val mainPage = MainPage(device)
         mainPage
@@ -244,10 +214,8 @@ class TestClaimsPage() : TestBase() {
         mainPage.onPage()
     }
 
-    /**
-     * 58
-     */
     @Test
+    @DisplayName("Тестирование редактирования заявки со статусом Open")
     fun testEditOpen() {
         MainPage(device)
             .clickAllClaims()
@@ -259,10 +227,8 @@ class TestClaimsPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 59
-     */
     @Test
+    @DisplayName("Тестирование редактирования заявки со статусом InProgress")
     fun testEditInProgress() {
         val claimItemPage = MainPage(device)
             .clickAllClaims()
@@ -274,10 +240,8 @@ class TestClaimsPage() : TestBase() {
         claimItemPage.onPage()
     }
 
-    /**
-     * 60
-     */
     @Test
+    @DisplayName("Тестирование редактирования заявки со статусом Executed")
     fun testEditExecuted() {
         val claimItemPage = MainPage(device)
             .clickAllClaims()
@@ -291,10 +255,8 @@ class TestClaimsPage() : TestBase() {
         claimItemPage.onPage()
     }
 
-    /**
-     * 61
-     */
     @Test
+    @DisplayName("Тестирование редактирования заявки со статусом Cancelled")
     fun testEditCanceled() {
         val claimItemPage = MainPage(device)
             .clickAllClaims()

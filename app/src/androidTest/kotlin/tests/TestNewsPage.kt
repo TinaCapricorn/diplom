@@ -1,8 +1,9 @@
 package tests
 
 import pages.*
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.uiautomator.UiObject2
+import io.qameta.allure.android.runners.AllureAndroidJUnit4
+import io.qameta.allure.kotlin.junit4.DisplayName
 import org.junit.Assert
 import org.junit.runner.RunWith
 import org.junit.Before
@@ -12,7 +13,7 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(AllureAndroidJUnit4::class)
 class TestNewsPage() : TestBase() {
 
     /**
@@ -23,10 +24,8 @@ class TestNewsPage() : TestBase() {
         loadPackage()
     }
 
-    /**
-     * 18, 19
-     */
     @Test
+    @DisplayName("Тестирование сортировки новостей по дате")
     fun testSortNewsByDate() {
         val newsPage = MainPage(device).clickAllNews()
         newsPage.clickNewsSort()
@@ -36,10 +35,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(true, firstDate <= secondDate)
     }
 
-    /**
-     * 20
-     */
     @Test
+    @DisplayName("Тестирование открытия фильтра новостей")
     fun testOpenNewsFilter() {
         MainPage(device)
             .clickAllNews()
@@ -47,10 +44,8 @@ class TestNewsPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 21
-     */
     @Test
+    @DisplayName("Тестирование выбора категории в фильтре новостей")
     fun testNewsFilterCategory() {
         val categoryName = "День рождения"
         val actualCategoryName = MainPage(device)
@@ -62,10 +57,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(categoryName, actualCategoryName)
     }
 
-    /**
-     * 22
-     */
     @Test
+    @DisplayName("Тестирование фильтрации новостей по категории")
     fun testApplyNewsFilterCategory() {
         val categoryName = "День рождения"
         val newsPage = MainPage(device)
@@ -83,10 +76,8 @@ class TestNewsPage() : TestBase() {
     }
 
 
-    /**
-     * 24
-     */
     @Test
+    @DisplayName("Тестирование выбора текущей даты ОТ")
     fun testSelectFromCurrentDate() {
         val formatter = DateTimeFormatter.ofPattern("dd")
         val fullDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -101,10 +92,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(currentDate.format(fullDateFormatter), page.getDateStart())
     }
 
-    /**
-     * 25
-     */
     @Test
+    @DisplayName("Тестирование выбора следующей даты ОТ")
     fun testSelectFromNextDate() {
         val formatter = DateTimeFormatter.ofPattern("dd")
         val fullDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -120,10 +109,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(currentDate.plus(period).format(fullDateFormatter), page.getDateStart())
     }
 
-    /**
-     * 26
-     */
     @Test
+    @DisplayName("Тестирование выбора предыдущей даты ДО")
     fun testSelectToPreviousDate() {
         val formatter = DateTimeFormatter.ofPattern("dd")
         val fullDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -139,10 +126,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(currentDate.minus(period).format(fullDateFormatter), page.getDateEnd())
     }
 
-    /**
-     * 27
-     */
     @Test
+    @DisplayName("Тестирование выбора текущей даты ДО")
     fun testSelectToCurrentDate() {
         val formatter = DateTimeFormatter.ofPattern("dd")
         val fullDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -157,10 +142,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(currentDate.format(fullDateFormatter), page.getDateEnd())
     }
 
-    /**
-     * 28
-     */
     @Test
+    @DisplayName("Тестирование выбора следующей даты ДО")
     fun testSelectToNextDate() {
         val formatter = DateTimeFormatter.ofPattern("dd")
         val fullDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -176,10 +159,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(currentDate.plus(period).format(fullDateFormatter), page.getDateEnd())
     }
 
-    /**
-     * 29
-     */
     @Test
+    @DisplayName("Тестирование попытки фильтрации с выбором только даты ОТ")
     fun testFilterFromDate() {
         val page = MainPage(device)
             .clickAllNews()
@@ -191,10 +172,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(true, hasError)
     }
 
-    /**
-     * 30
-     */
     @Test
+    @DisplayName("Тестирование попытки фильтрации с выбором только даты ДО")
     fun testFilterToDate() {
         val page = MainPage(device)
             .clickAllNews()
@@ -206,10 +185,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(true, hasError)
     }
 
-    /**
-     * 31
-     */
     @Test
+    @DisplayName("Тестирование фильтрации по датам")
     fun testFilterBothDates() {
         val formatter = DateTimeFormatter.ofPattern("dd")
         val currentDate = LocalDateTime.now()
@@ -226,10 +203,8 @@ class TestNewsPage() : TestBase() {
         page.applyFilter().onPage()
     }
 
-    /**
-     * 32
-     */
     @Test
+    @DisplayName("Тестирование закрытия фильтра новостей")
     fun testFilterClose() {
         MainPage(device)
             .clickAllNews()
@@ -238,20 +213,17 @@ class TestNewsPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 33
-     */
     @Test
+    @DisplayName("Тестирование перехода на страницу управления новостями")
     fun testOpenNewsControlPanel() {
-        MainPage(device).clickAllNews()
+        MainPage(device)
+            .clickAllNews()
             .clickNewsEdit()
             .onPage()
     }
 
-    /**
-     * 34
-     */
     @Test
+    @DisplayName("Тестирование удаления новости")
     fun testDeleteNewsItem() {
         val newsPage = MainPage(device)
             .clickAllNews()
@@ -263,23 +235,20 @@ class TestNewsPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 35
-     */
     @Test
+    @DisplayName("Тестирование перехода на страницу редактирования новости")
     fun testEditNewsItem() {
-        val newsName = "День рождения"
-        MainPage(device)
+        val newsPage = MainPage(device)
             .clickAllNews()
+        val newsName = newsPage.getNewsItemName();
+        newsPage
             .clickNewsEdit()
             .clickEditNewsItem(newsName)
             .onPage()
     }
 
-    /**
-     * 36
-     */
     @Test
+    @DisplayName("Тестирование перехода на страницу добавления новости")
     fun testOpenAddNewsItemPage() {
         MainPage(device)
             .clickAllNews()
@@ -288,10 +257,8 @@ class TestNewsPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 37
-     */
     @Test
+    @DisplayName("Тестирование добавления новости")
     fun testAddNewsItem() {
         val categoryName = "День рождения"
         val addedNews = MainPage(device)
@@ -307,10 +274,8 @@ class TestNewsPage() : TestBase() {
         Assert.assertEquals(true, addedNews is UiObject2)
     }
 
-    /**
-     * 38
-     */
     @Test
+    @DisplayName("Тестирование отмены добавления новости")
     fun testCancelAddNewsItem() {
         MainPage(device)
             .clickAllNews()

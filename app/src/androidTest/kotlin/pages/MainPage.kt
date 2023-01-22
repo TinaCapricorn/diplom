@@ -2,7 +2,6 @@ package pages
 
 import androidx.test.uiautomator.*
 import org.junit.Assert.assertEquals
-import ru.iteco.fmhandroid.dto.News
 
 class MainPage(device: UiDevice) : Page(device) {
 

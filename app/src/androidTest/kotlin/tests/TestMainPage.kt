@@ -1,13 +1,13 @@
 package tests
 
 import pages.MainPage
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.runner.RunWith
 import org.junit.Before
 import org.junit.Test
+import io.qameta.allure.android.runners.AllureAndroidJUnit4
+import io.qameta.allure.kotlin.junit4.DisplayName
 
-
-@RunWith(AndroidJUnit4::class)
+@RunWith(AllureAndroidJUnit4::class)
 class TestMainPage() : TestBase() {
 
     /**
@@ -18,10 +18,8 @@ class TestMainPage() : TestBase() {
         loadPackage()
     }
 
-    /**
-     * 1
-     */
     @Test
+    @DisplayName("Тестирование перехода на страницу заявок из меню")
     fun testMenuClaimsButton() {
         MainPage(device)
             .clickMainMenu()
@@ -29,10 +27,8 @@ class TestMainPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 2
-     */
     @Test
+    @DisplayName("Тестирование перехода на страницу новостей из меню")
     fun testMenuNewsButton() {
         MainPage(device)
             .clickMainMenu()
@@ -40,20 +36,16 @@ class TestMainPage() : TestBase() {
             .onPage()
     }
 
-    /**
-     * 3
-     */
     @Test
+    @DisplayName("Тестирование перехода на страницу миссии")
     fun testMissionButton() {
         MainPage(device)
             .clickMissionButton()
             .onPage()
     }
 
-    /**
-     * 4,5
-     */
     @Test
+    @DisplayName("Тестирование кнопки сворачивания и разворачивания новостей")
     fun testExpandCollapseNews() {
         MainPage(device)
             .toggleNews()
@@ -62,10 +54,8 @@ class TestMainPage() : TestBase() {
             .isNewsVisible(true)
     }
 
-    /**
-     * 6,7
-     */
     @Test
+    @DisplayName("Тестирование кнопки сворачивания и разворачивания заявок")
     fun testExpandCollapseClaims() {
         MainPage(device)
             .toggleClaims()
@@ -74,30 +64,24 @@ class TestMainPage() : TestBase() {
             .isClaimsVisible(true)
     }
 
-    /**
-     * 8
-     */
     @Test
+    @DisplayName("Тестирование перехода на страницу новостей")
     fun testAllNewsButton() {
         MainPage(device)
             .clickAllNews()
             .onPage()
     }
 
-    /**
-     * 9
-     */
     @Test
+    @DisplayName("Тестирование перехода на страницу заявок")
     fun testAllClaimsButton() {
         MainPage(device)
             .clickAllClaims()
             .onPage()
     }
 
-    /**
-     * 10, 12
-     */
     @Test
+    @DisplayName("Тестирование сворачивания и разворачивания отедльной новости кликом по стрелке")
     fun testExpandCollapseArrowNews() {
         MainPage(device)
             .clickNewsItemArrow()
@@ -106,10 +90,8 @@ class TestMainPage() : TestBase() {
             .newsItemTextIsVisible(false)
     }
 
-    /**
-     * 11, 13
-     */
     @Test
+    @DisplayName("Тестирование сворачивания и разворачивания отедльной новости кликом по заголовку")
     fun testExpandCollapseTitleNews() {
         MainPage(device)
             .clickNewsItemTitle()
@@ -118,45 +100,35 @@ class TestMainPage() : TestBase() {
             .newsItemTextIsVisible(false)
     }
 
-    /**
-     * 14
-     */
     @Test
+    @DisplayName("Тестирование открытия заявки кликом по стрелке")
     fun testOpenClaimByArrowClick() {
         MainPage(device)
             .clickClaimItemArrow()
             .onPage()
     }
 
-    /**
-     * 15
-     */
     @Test
+    @DisplayName("Тестирование открытия заявки кликом по заголовку")
     fun testOpenClaimByTopicClick() {
         MainPage(device)
             .clickClaimItemTitle()
             .onPage()
     }
 
-    /**
-     * 16
-     */
     @Test
+    @DisplayName("Тестирование открытия заявки кликом по описанию")
     fun testOpenClaimByDetailsClick() {
         MainPage(device)
             .clickClaimItemDetails()
             .onPage()
     }
 
-    /**
-     * 17
-     */
     @Test
+    @DisplayName("Тестирование открытия страницы добавления новой заявки")
     fun testOpenAddNewClaim() {
         MainPage(device)
             .clickAddNewClaim()
             .onPage()
     }
-
-
 }
