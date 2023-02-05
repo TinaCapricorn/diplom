@@ -11,6 +11,7 @@ import org.junit.Test
 
 
 @RunWith(AllureAndroidJUnit4::class)
+@DisplayName("Тестирование страницы заявок")
 class TestClaimsPage() : TestBase() {
 
     /**

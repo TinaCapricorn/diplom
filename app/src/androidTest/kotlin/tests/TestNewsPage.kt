@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter
 
 
 @RunWith(AllureAndroidJUnit4::class)
+@DisplayName("Тестирование страницы новостей")
 class TestNewsPage() : TestBase() {
 
     /**

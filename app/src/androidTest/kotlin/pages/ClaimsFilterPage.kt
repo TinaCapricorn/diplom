@@ -14,6 +14,7 @@ class ClaimsFilterPage(device: UiDevice) : Page(device) {
     private val filterCancelButton = "claim_filter_cancel_material_button"
 
     fun onPage() {
+        step("Проверить открытие фильтра заявок")
         assertEquals(true, getElementById(claimsFilterTitleSelector) is UiObject2)
     }
 
@@ -34,49 +35,66 @@ class ClaimsFilterPage(device: UiDevice) : Page(device) {
     }
 
     fun isOpenChecked() : Boolean? {
-        return getOpen()?.isChecked
+        val isChecked = getOpen()?.isChecked
+        step("Чекбокс 'Открыто' ".plus(getTextByCheckboxValue(isChecked)))
+        return isChecked
     }
 
     fun isInProgressChecked() : Boolean? {
-        return getInProgress()?.isChecked
+        val isChecked = getInProgress()?.isChecked
+        step("Чекбокс 'В работе' ".plus(getTextByCheckboxValue(isChecked)))
+        return isChecked
     }
 
     fun isExecutedChecked() : Boolean? {
-        return getExecuted()?.isChecked
+        val isChecked = getExecuted()?.isChecked
+        step("Чекбокс 'Выполнена' ".plus(getTextByCheckboxValue(isChecked)))
+        return isChecked
     }
 
     fun isCancelledChecked() : Boolean? {
-        return getCancelled()?.isChecked
+        val isChecked = getCancelled()?.isChecked
+        step("Чекбокс 'Отмененные' ".plus(getTextByCheckboxValue(isChecked)))
+        return isChecked
     }
 
     fun clickOpen() : ClaimsFilterPage {
+        step("Нажать чекбокс 'Открыто'")
         getOpen()?.click()
         return this
     }
 
     fun clickInProgress() : ClaimsFilterPage {
+        step("Нажать чекбокс 'В работе'")
         getInProgress()?.click()
         return this
     }
 
     fun clickExecuted() : ClaimsFilterPage {
+        step("Нажать чекбокс 'Выполнена'")
         getExecuted()?.click()
         return this
     }
 
     fun clickCancelled() : ClaimsFilterPage {
+        step("Нажать чекбокс 'Выполнена'")
         getCancelled()?.click()
         return this
     }
 
     fun applyFilter() : ClaimsPage {
+        step("Нажать кнопку фильтрации")
         getElementById(filterApplyButton)?.click()
         return ClaimsPage(device)
     }
 
     fun cancelFilter() : ClaimsPage {
+        step("Нажать кнопку отмены фильтрации")
         getElementById(filterCancelButton)?.click()
         return ClaimsPage(device)
     }
 
+    private fun getTextByCheckboxValue(isChecked: Boolean?): String {
+        return (if (isChecked!!) "" else "не ").plus("выбран")
+    }
 }

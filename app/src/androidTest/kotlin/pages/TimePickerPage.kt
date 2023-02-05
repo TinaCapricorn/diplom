@@ -9,10 +9,12 @@ class TimePickerPage(device: UiDevice) : Page(device) {
     private val confirmText = "OK"
 
     fun onPage() {
+        step("Проверить открытие окна выбора времени")
         assertEquals(true, getElementById(timePickerSelector) is UiObject2)
     }
 
     fun confirm() : TimePickerPage {
+        step("Подтвердить выбор времени")
         getElementByText(confirmText)?.click()
         return this
     }

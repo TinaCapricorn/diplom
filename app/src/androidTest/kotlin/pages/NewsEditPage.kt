@@ -16,6 +16,7 @@ class NewsEditPage(device: UiDevice) : Page(device) {
     private val confirmText = "OK"
 
     fun onPage() {
+        step("Проверить переход на страницу редактирования новости")
         assertEquals(true, getElementById(newsEditPageSelector) is UiObject2)
     }
 
@@ -32,49 +33,58 @@ class NewsEditPage(device: UiDevice) : Page(device) {
     }
 
     fun setCategory(category: String) : NewsEditPage {
+        step("Нажать на инпут категории")
         getCategoryInput()?.click()
+        step("Нажать на категорию с названием '".plus(category).plus("'"))
         getElementByText(category)?.click()
         return this
     }
 
     fun getCategory() : String {
+        step("Получить название категории")
         return getCategoryInput()?.text.toString()
-
     }
 
     fun setTitle(title: String) : NewsEditPage {
+        step("Ввести в поле названия новости текст '".plus(title).plus("'"))
         getTitleInput()?.text = title
         return this
     }
 
     fun setDate() : NewsEditPage {
+        step("Нажать на инпут даты новости")
         getElementById(dateSelector)?.click()
         DatePickerPage(device).confirm()
         return this
     }
 
     fun setTime() : NewsEditPage {
+        step("Нажать на инпут времени новости")
         getElementById(timeSelector)?.click()
         TimePickerPage(device).confirm()
         return this
     }
 
     fun setDescription(description: String) : NewsEditPage {
+        step("Ввести в поле описания новости текст '".plus(description).plus("'"))
         getDescriptionInput()?.text = description
         return this
     }
 
     fun saveNews() : NewsControlPage {
+        step("Нажать на кнопку сохранения новости")
         getElementById(saveButton)?.click()
         return NewsControlPage(device)
     }
 
     fun cancel() : NewsEditPage {
+        step("Нажать на кнопку отмены сохранения новости")
         getElementById(cancelButton)?.click()
         return this
     }
 
     fun confirmCancel() : NewsControlPage {
+        step("Нажать на кнопку ОК, для отмены сохранения новости")
         getElementByText(confirmText)?.click()
         return NewsControlPage(device)
     }

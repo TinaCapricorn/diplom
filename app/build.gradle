@@ -7,8 +7,8 @@ plugins {
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.firebase.crashlytics'
+    id 'io.qameta.allure-adapter' version '2.11.2'
 }
-
 android {
     compileSdkVersion 32
     buildToolsVersion "30.0.3"
@@ -98,7 +98,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'androidx.test:rules:1.5.0'
     testImplementation "junit:junit:$junit_version"
+    androidTestUtil "androidx.test:orchestrator:1.4.2"
     androidTestImplementation "androidx.test:core-ktx:$test_core_version"
     androidTestImplementation "androidx.test.ext:junit-ktx:$test_junit_version"
     androidTestImplementation "androidx.test:runner:$test_core_version"

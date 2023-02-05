@@ -1,6 +1,7 @@
 package pages
 
 import androidx.test.uiautomator.*
+import io.qameta.allure.kotlin.Allure;
 
 const val MODEL_PACKAGE = "ru.iteco.fmhandroid"
 
@@ -16,7 +17,7 @@ open class Page (
         val resId = MODEL_PACKAGE.plus(":id/").plus(id)
         device.wait(Until.hasObject(By.res(resId)), TIMEOUT)
         if (device.findObject(By.res(resId)) !is UiObject2) {
-            scrollToById(resId)
+            try {scrollToById(resId)} catch (e: UiObjectNotFoundException) {}
         }
         return device.findObject(By.res(resId))
 
@@ -29,7 +30,7 @@ open class Page (
         val resId = MODEL_PACKAGE.plus(":id/").plus(id)
         device.wait(Until.hasObject(By.res(resId)), TIMEOUT)
         if (parent?.findObject(By.res(resId)) !is UiObject2) {
-            scrollToById(resId)
+            try {scrollToById(resId)} catch (e: UiObjectNotFoundException) {}
         }
         return parent?.findObject(By.res(resId))
     }
@@ -40,7 +41,7 @@ open class Page (
     protected fun getElementByText(text: String): UiObject2? {
         device.wait(Until.hasObject(By.text(text)), TIMEOUT)
         if (device.findObject(By.text(text)) !is UiObject2) {
-            scrollToByText(text)
+            try {scrollToByText(text)} catch (e: UiObjectNotFoundException) {}
         }
         return device.findObject(By.text(text))
     }
@@ -60,6 +61,13 @@ open class Page (
     private fun scrollToById(id: String) {
         val appViews = UiScrollable(UiSelector().scrollable(true))
         appViews.scrollIntoView(UiSelector().resourceId(id))
+    }
+
+    /**
+     * добавить шаг
+     */
+    protected fun step(name: String) {
+        Allure.step(name);
     }
 
 }

@@ -1,13 +1,15 @@
 package tests
 
-import pages.MainPage
-import org.junit.runner.RunWith
-import org.junit.Before
-import org.junit.Test
 import io.qameta.allure.android.runners.AllureAndroidJUnit4
 import io.qameta.allure.kotlin.junit4.DisplayName
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import pages.MainPage
+
 
 @RunWith(AllureAndroidJUnit4::class)
+@DisplayName("Тестирование главной страницы приложения")
 class TestMainPage() : TestBase() {
 
     /**
